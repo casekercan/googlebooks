@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchResultContainer from "../components/SearchResultContainer";
-
+import "../styles/style.css";
 
 class Books extends Component {
 

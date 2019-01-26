@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "../styles/style.css";
+
 
 class Nomatch extends Component {
     render() {
