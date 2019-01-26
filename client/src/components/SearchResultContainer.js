@@ -23,7 +23,7 @@ class SearchResultContainer extends Component {
       description: book.volumeInfo.description,
       image: book.volumeInfo.imageLinks.thumbnail,
       link: book.volumeInfo.infoLink
-    }).then(console.log("done!"))
+    }).then(alert("Book Saved to your list!"))
       .catch(err => console.log(err));
   }
 
