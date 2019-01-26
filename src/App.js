@@ -1,8 +1,24 @@
 import React from "react";
-import SearchResultContainer from "./components/SearchResultContainer";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Books from "./pages/Home";
+import Saved from "./pages/Saved";
+import Nomatch from "./pages/Nomatch";
+import Nav from "./components/Nav";
 
 function App() {
-  return <SearchResultContainer />;
+  return (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Books} />
+          <Route exact path="/saved" component={Saved} />
+          <Route component={Nomatch} />
+        </Switch>
+      </div>
+    </Router>
+  )
+
 }
 
 export default App;
