@@ -24,6 +24,7 @@ class SearchResultContainer extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.searchBooks(this.state.search);
+    this.setState({ search: "" });
   };
 
   searchBooks = (query) => {

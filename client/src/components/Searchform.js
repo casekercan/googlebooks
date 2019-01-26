@@ -15,7 +15,7 @@ function SearchForm(props) {
                             value={props.value}
                             name="search"
                             type="text"
-                            className="form-control mb-2" placeholder="Search different Categories"
+                            className="form-control mb-2" placeholder="Search for a Book"
                             id="search"
                         />
                     </div>
