@@ -1,17 +1,33 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import SearchForm from "./Searchform";
+
 
 class SearchResultContainer extends Component {
   state = {
-    results: []
+    results: [],
+    search: ""
   };
 
   componentDidMount() {
-    this.searchBooks();
+    this.searchBooks("mystery");
   }
 
-  searchBooks = () => {
-    API.search()
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.searchBooks(this.state.search);
+  };
+
+  searchBooks = (query) => {
+    API.search(query)
       .then(res => this.setState({ results: res.data.items }))
       .catch(err => console.log(err));
   };
@@ -30,6 +46,11 @@ class SearchResultContainer extends Component {
   render() {
     return (
       <div className="container">
+        <SearchForm
+          value={this.state.search}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
+        />
         <ul className="list-group">
           {this.state.results.map(result => (
             <li className="list-group-item" key={result.id}>
