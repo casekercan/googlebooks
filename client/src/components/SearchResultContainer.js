@@ -29,9 +29,9 @@ class SearchResultContainer extends Component {
 
   searchBooks = (query) => {
     API.search(query)
-      .then(res => this.setState({ results: res.data.items }))
-      .catch(err => console.log(err));
+      .then(res => this.setState({ results: res.data.items })).catch(err => console.log(err));
   };
+
 
   sendBook = (book) => {
     API.saveBook({
@@ -42,16 +42,14 @@ class SearchResultContainer extends Component {
       link: book.volumeInfo.infoLink
     }).then(alert("Book Saved to your list!"))
       .catch(err => console.log(err));
-  }
+  };
+
+
 
   render() {
     return (
       <div className="container">
-        <SearchForm
-          value={this.state.search}
-          handleInputChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}
-        />
+        <SearchForm value={this.state.search} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} />
         <ul className="list-group">
           {this.state.results.map(result => (
             <li className="list-group-item" key={result.id}>
@@ -62,7 +60,7 @@ class SearchResultContainer extends Component {
                   <p>Description: {result.volumeInfo.description ? result.volumeInfo.description : " No Description Available"}</p>
                 </div>
                 <div className="col-4">
-                  <img src={result.volumeInfo.imageLinks.thumbnail} alt="bookimage" />
+                  <img src={result.volumeInfo.imageLinks ? result.volumeInfo.imageLinks.thumbnail : "./images/NoCoverArt_Book_3.png"} alt="bookimage" />
                   <p></p>
                   <p>
                     <a className="btn btn-info" href={result.volumeInfo.infoLink} >Get Book</a>    <button className="btn btn-success" onClick={() => this.sendBook(result)}  >Save For Later</button>
